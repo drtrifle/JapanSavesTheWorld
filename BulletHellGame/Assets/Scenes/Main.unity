@@ -549,9 +549,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1201671764}
   - component: {fileID: 1201671763}
-  - component: {fileID: 1201671765}
   - component: {fileID: 1201671766}
   - component: {fileID: 1201671767}
+  - component: {fileID: 1201671765}
   m_Layer: 10
   m_Name: Japan
   m_TagString: Player
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08f01d6ffb1ea440b28a384d70a1541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorSpeed: 0.25
+  cursorSpeed: 0.75
 --- !u!50 &1201671766
 Rigidbody2D:
   serializedVersion: 4
