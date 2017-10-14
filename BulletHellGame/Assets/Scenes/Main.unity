@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 210025784}
   - component: {fileID: 210025783}
   - component: {fileID: 210025785}
+  - component: {fileID: 210025786}
   m_Layer: 8
   m_Name: World
   m_TagString: World
@@ -288,6 +289,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.8599997
+--- !u!114 &210025786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210025782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d54171b8997d90469c7a786b205343d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 0.001
 --- !u!1 &1201671762
 GameObject:
   m_ObjectHideFlags: 0
