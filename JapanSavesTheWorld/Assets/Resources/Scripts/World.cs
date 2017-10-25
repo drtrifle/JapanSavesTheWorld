@@ -13,7 +13,7 @@ public class World : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        ScaleWorld();
+        //ScaleWorld();
     }
 
     public void ScaleWorld() {

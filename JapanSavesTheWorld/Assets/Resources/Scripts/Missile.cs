@@ -16,11 +16,12 @@ public class Missile : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right);
     }
 
+    /* removed for now
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 }
