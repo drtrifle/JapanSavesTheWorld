@@ -41,4 +41,9 @@ public class GameManager : MonoBehaviour {
         worldScript.ScaleWorld();
         uiManager.IncrementMissleBlockedText();
     }
+
+    public void PlayerFailedToBlockMissile()
+    {
+        uiManager.DecrementHealthBar();
+    }
 }
