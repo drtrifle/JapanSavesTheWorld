@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerBehavior : MonoBehaviour {
+
+	[Header("References (Must not be null)")]
+	[SerializeField]
+	private GameObject forcefield;
 
 	[Header("Settings")]
 	[SerializeField]
@@ -16,6 +20,8 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		Cursor.visible = false;
+
+		Debug.Assert(this.forcefield != null);
 	}
 
 	void LateUpdate() {
@@ -26,12 +32,17 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetMouseButton(0)) {
 			// Shield superpower
 			SlowerFollow();
+			this.forcefield.SetActive(true);
 		} else if (Input.GetMouseButton(1)) {
 			// Hyperspeed superpower
 			HyperSpeedFollow();
 		} else {
 			// Normal blocking mode
 			NormalFollow();
+		}
+
+		if (Input.GetMouseButtonUp(0)) {
+			this.forcefield.SetActive(false);
 		}
 	}
 
@@ -44,6 +55,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void SlowerFollow() {
-		this.transform.position = Vector3.SmoothDamp(this.transform.position, mousePosition, ref this.velocity, timeToReachMaxSpeed, this.maxSpeed * 0.5f);
+		this.transform.position = Vector3.SmoothDamp(this.transform.position, mousePosition, ref this.velocity, timeToReachMaxSpeed, this.maxSpeed * 0.2f);
 	}
 }
