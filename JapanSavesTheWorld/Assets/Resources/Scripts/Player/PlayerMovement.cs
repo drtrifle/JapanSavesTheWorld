@@ -44,6 +44,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void SlowerFollow() {
-		this.transform.position = Vector3.SmoothDamp(this.transform.position, mousePosition, ref this.velocity, timeToReachMaxSpeed, this.maxSpeed * 0.75f);
+		this.transform.position = Vector3.SmoothDamp(this.transform.position, mousePosition, ref this.velocity, timeToReachMaxSpeed, this.maxSpeed * 0.5f);
 	}
 }
