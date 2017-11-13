@@ -4,24 +4,53 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour {
 
-    public float lifetime = 2.0f;
+	[Header("References (Auto)")]
+	[SerializeField]
+	private Rigidbody2D rb;
+	[SerializeField]
+	private BoxCollider2D bc;
+	[SerializeField]
+	private Animator animator;
 
-    // Use this for initialization
-    void Start() {
-        Destroy(gameObject, lifetime);
-    }
+	void Awake() {
+		this.rb = this.GetComponent<Rigidbody2D>();
+		this.bc = this.GetComponent<BoxCollider2D>();
+		this.animator = this.GetComponent<Animator>();
+	}
+
+	void Initialize() {
+		this.rb.bodyType = RigidbodyType2D.Dynamic;
+		this.bc.enabled = true;
+
+		this.alreadyHit = false;
+	}
 
     // Update is called once per frame
     void FixedUpdate() {
-        gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right);
+		this.rb.AddForce(transform.right);
     }
 
-    /* removed for now
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-    }*/
+	void OnCollisionEnter2D(Collision2D collider) {
+		if (!this.alreadyHit && (collider.gameObject.CompareTag("World") || collider.gameObject.CompareTag("Player"))) {
+			StartCoroutine(hitSequence());
+		}
+    }
+
+	private bool alreadyHit = false;
+
+	private IEnumerator hitSequence() {
+		this.alreadyHit = true;
+
+		this.rb.bodyType = RigidbodyType2D.Static;
+		this.bc.enabled = false;
+
+		// Explode animation
+		this.animator.Play("Explosion");
+		yield return new WaitForSeconds(getAnimationLength(this.animator));
+		this.gameObject.SetActive(false);
+	}
+
+	public static float getAnimationLength(Animator animator) {
+		return animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+	}
 }

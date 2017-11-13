@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("SpawnMissile",2.0f,0.3f);
+        InvokeRepeating("SpawnMissile", 2.0f, 0.3f);
 	}
 	
 	void SpawnMissile()
