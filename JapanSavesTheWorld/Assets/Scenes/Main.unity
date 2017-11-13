@@ -412,7 +412,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.41
 --- !u!114 &210025786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,7 +1099,6 @@ GameObject:
   - component: {fileID: 1178231069}
   - component: {fileID: 1178231068}
   - component: {fileID: 1178231067}
-  - component: {fileID: 1178231066}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -1107,13 +1106,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1178231066
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1178231065}
-  m_Enabled: 1
 --- !u!124 &1178231067
 Behaviour:
   m_ObjectHideFlags: 0

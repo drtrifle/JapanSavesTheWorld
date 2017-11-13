@@ -8,19 +8,19 @@ public class Missile : MonoBehaviour {
 	[SerializeField]
 	private Rigidbody2D rb;
 	[SerializeField]
-	private BoxCollider2D bc;
+	private Collider2D cd;
 	[SerializeField]
 	private Animator animator;
 
 	void Awake() {
 		this.rb = this.GetComponent<Rigidbody2D>();
-		this.bc = this.GetComponent<BoxCollider2D>();
+		this.cd = this.GetComponent<Collider2D>();
 		this.animator = this.GetComponent<Animator>();
 	}
 
 	void Initialize() {
 		this.rb.bodyType = RigidbodyType2D.Dynamic;
-		this.bc.enabled = true;
+		this.cd.enabled = true;
 
 		this.alreadyHit = false;
 	}
@@ -42,7 +42,9 @@ public class Missile : MonoBehaviour {
 		this.alreadyHit = true;
 
 		this.rb.bodyType = RigidbodyType2D.Static;
-		this.bc.enabled = false;
+		this.cd.enabled = false;
+
+		this.transform.position += this.transform.right * Random.Range(0.0f, 0.5f);
 
 		// Explode animation
 		this.animator.Play("Explosion");
