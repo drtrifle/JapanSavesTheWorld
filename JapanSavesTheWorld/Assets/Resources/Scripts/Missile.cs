@@ -18,7 +18,10 @@ public class Missile : MonoBehaviour {
 		this.animator = this.GetComponent<Animator>();
 	}
 
-	void Initialize() {
+	public void Initialize() {
+		Debug.Log(this.gameObject.name + " initialized");
+		this.gameObject.SetActive(true);
+
 		this.rb.bodyType = RigidbodyType2D.Dynamic;
 		this.cd.enabled = true;
 
@@ -32,27 +35,22 @@ public class Missile : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collider) {
 		if (!this.alreadyHit && (collider.gameObject.CompareTag("World") || collider.gameObject.CompareTag("Player"))) {
-			StartCoroutine(hitSequence());
+			this.alreadyHit = true;
+
+			this.rb.bodyType = RigidbodyType2D.Static;
+			this.cd.enabled = false;
+
+			this.transform.position += this.transform.right * Random.Range(0.0f, 0.5f);
+
+			// Explode animation
+			this.animator.Play("Explosion");
 		}
     }
 
 	private bool alreadyHit = false;
 
-	private IEnumerator hitSequence() {
-		this.alreadyHit = true;
-
-		this.rb.bodyType = RigidbodyType2D.Static;
-		this.cd.enabled = false;
-
-		this.transform.position += this.transform.right * Random.Range(0.0f, 0.5f);
-
-		// Explode animation
-		this.animator.Play("Explosion");
-		yield return new WaitForSeconds(getAnimationLength(this.animator));
+	private void disable() {
+		Debug.Log("Disable");
 		this.gameObject.SetActive(false);
-	}
-
-	public static float getAnimationLength(Animator animator) {
-		return animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 	}
 }

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    public GameObject MissilePrefab;
+	[Header("References (Must not be null)")]
+	[SerializeField]
+	private ObjectPool missileObjectPool;
+
+	void Awake() {
+		Debug.Assert(this.missileObjectPool != null);
+	}
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("SpawnMissile", 2.0f, 0.3f);
+		InvokeRepeating("SpawnMissile", 5.0f, 1.0f);
 	}
 	
-	void SpawnMissile()
-    {
-        Instantiate(MissilePrefab, transform.position, transform.rotation);
+	void SpawnMissile() {
+		Missile missile = this.missileObjectPool.getUnusedObject().GetComponent<Missile>();
+		missile.transform.position = this.transform.position;
+		missile.transform.rotation = this.transform.rotation;
+		missile.Initialize();
     }
 }
